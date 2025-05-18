@@ -1,5 +1,5 @@
 resource "aws_key_pair" "deployer" {
-  key_name   = "terra-automate-key"
+  key_name   = "terra-key"
   public_key = file("${path.module}/terra-key.pub")
 }
 
@@ -54,10 +54,10 @@ resource "aws_instance" "testinstance" {
   key_name        = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.allow_user_to_connect.name]
   tags = {
-    Name = "Automate"
+    Name = "client_vm"
   }
   root_block_device {
-    volume_size = 30 
+    volume_size = 15 
     volume_type = "gp3"
   }
 }
